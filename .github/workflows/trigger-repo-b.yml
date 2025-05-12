@@ -12,7 +12,7 @@ jobs:
         uses: peter-evans/repository-dispatch@v3
         with:
           token: ${{ secrets.REPO_B_PAT }}
-          repository: ${{ secrets.REPO_B }}
+          repository: elyas-hanafi/cypress-api-test # must be full "owner/repo"
           event-type: run-api-tests
           client-payload: >-
             {
