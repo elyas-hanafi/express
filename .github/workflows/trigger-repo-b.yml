@@ -1,0 +1,21 @@
+name: Trigger Cypress Tests in Repo B
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  dispatch-tests:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger Repo B workflow
+        uses: peter-evans/repository-dispatch@v3
+        with:
+          token: ${{ secrets.REPO_B_PAT }}
+          repository: ${{ secrets.REPO_B }}
+          event-type: run-api-tests
+          client-payload: >-
+            {
+              "triggered_by": "${{ github.repository }}",
+              "commit_sha": "${{ github.sha }}"
+            }
